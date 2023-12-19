@@ -23,7 +23,7 @@ This project aims to create a server to serve as a personal budget website in re
 
 ### Testing
 - In order to fully function, run `npm install` to install Express before trying to start up your server.
-- Use **Postman** to test out all the functions, dowload Postman --> [Postman](https://www.postman.com/).
+- Use **Postman** to test out all the functions, download Postman --> [Postman](https://www.postman.com/).
   
 ## Remarks
 **Required frontend-development for the client experience**
