@@ -17,17 +17,26 @@ app.use(cors());
 // Add middware for parsing request bodies here:
 app.use(bodyParser.json());
 
-// Test Server
-app.get('/', (req, res, next) => {
-    res.status(200).send("Hello World");
-})
+// Mount api router
+const budgetRouter = require('./api/budget');
+app.use('/budget', budgetRouter);
 
 //// Error Handling Middle Ware 
 const errorHandler = (err, req, res, next) => {
-    if (!err.status) {
-      err.status = 500;
-    }
-    res.status(err.status).send(err.message);
+  if (!err.status) {
+    err.status = 500;
+  }
+
+  if (!err.message) {
+    err.message = "Something is wrong";
+  }
+
+  // Log the error details for debugging
+  console.error(`Error ${err.status}: ${err.message}`);
+  console.error(err.stack);
+
+  // Send a response to the client
+  res.status(err.status).send(err.message);
 };
 app.use(errorHandler);
 
@@ -36,3 +45,6 @@ app.use(errorHandler);
 app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);
 });
+
+//Url Path
+const path = 'localhost:3000/budget/API'
